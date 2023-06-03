@@ -36,7 +36,6 @@ def find_pet_by_name(pet_shop, name):
         if pet_name == name:
             return(pet)
         index += 1
-    return None
 
 def remove_pet_by_name(pet_shop, name):
     index = 0
@@ -75,24 +74,11 @@ def customer_can_afford_pet(customer, pet):
     else:
         return False
 
-# Below works when pet is found but not otherwise
-# def sell_pet_to_customer(pet_shop, pet, customer):
-#     if customer_can_afford_pet(customer, pet) == True:
-#         price = pet["price"]
-#         num_of_pets = 1
-#         add_pet_to_customer(customer, pet)
-#         remove_customer_cash(customer, price)
-#         remove_pet_by_name(pet_shop, pet)
-#         add_or_remove_cash(pet_shop, price)
-#         increase_pets_sold(pet_shop, num_of_pets)
-
 def sell_pet_to_customer(pet_shop, pet, customer):
-    pet_name = pet["name"]
-    if find_pet_by_name(pet_shop, pet_name) != None and customer_can_afford_pet(customer, pet) == True:
+    if pet != None and customer_can_afford_pet(customer, pet) == True:
         price = pet["price"]
-        num_of_pets = 1
         add_pet_to_customer(customer, pet)
         remove_customer_cash(customer, price)
         remove_pet_by_name(pet_shop, pet)
         add_or_remove_cash(pet_shop, price)
-        increase_pets_sold(pet_shop, num_of_pets)
+        increase_pets_sold(pet_shop, 1)
